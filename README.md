@@ -5,6 +5,7 @@ To analyse the stability of the system having open loop transfer function, G(S)=
 Computer with MATLAB software
 
 ## Theory:
+<img width="543" height="918" alt="image" src="https://github.com/user-attachments/assets/aa845d3d-a553-44ca-abab-58674adfc6b1" />
 
 
 
@@ -17,13 +18,32 @@ Computer with MATLAB software
 	Also determine the stability.
 
 ## Program: 
-
+```
+num=[10]
+den=[0.1 0.7 1 0]
+sys=tf(num,den)
+[mag,phase,W]=bode(sys)
+mag=squeeze(mag)
+phase=squeeze(phase)
+phase1=deg2rad(phase)
+polarplot(phase1,mag,'linewidth',1.5)
+grid on
+[Gm Pm Wpc Wgc]=margin(sys)
+if(Wpc>Wgc)
+    disp('stable')
+elseif(Wpc == Wgc)
+    disp('marginally stable')
+else
+    disp('unstable')
+end
+```
 ## Output:
+<img width="863" height="780" alt="image" src="https://github.com/user-attachments/assets/369007b0-c90b-4a11-9aa6-34754a75bc8c" />
 
 ## Result:
 Thus the polar plot for the given transfer function was drawn and verified using MATLAB. <br>
-Gain margin = <br>
-Phase Margin = <br>
-Gain crossover frequency = <br>
-Phase crossover frequency = <br>
-The system is  ------------
+Gain margin = 0.70<br>
+Phase Margin = -8.88<br>
+Gain crossover frequency = 3.75<br>
+Phase crossover frequency = 3.16<br>
+The system is unstable
